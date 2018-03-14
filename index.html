@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <!--somewhat responsive-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Up to 70 Characters of Keyword-relevant text here -->
+    <title>Giphy Search</title>
+    <!--Faviocon-->
+    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <!--Myers reset-->
+    <!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css"> --> 
+    <!--Local CSS-->
+    <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Rendered Buttons will get placed here  -->
+    <div class="buttons-view"></div>
+    <form>
+        <label for="critter-input">Add a Critter</label>
+        <input type="text" id="critter-input">
+        <!-- Button triggers new topic to be added -->
+        <input class="addCritter" type="submit" value="Search">
+    </form>
+    <div class="container">
+        <!-- critters will Get Dumped here -->
+        <div class="critterView"></div>
+    </div>
+    <footer>
+  
+    </footer>
+    <!--========================================================-->
+    <!--Begin javaScripting, AJAX and jQuery-->
+    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+        // Initial array of critters
+        var critters = ["Owl", "Rose", "Dolphin", "Starfish", "Cat", "Sheep"];
+
+        // display Critter Information function now re-renders the HTML to display the appropriate content. 
+        function displayTopicInfo() {
+
+            var topic = $(this).attr('data-name');
+            var queryURL = "https://crossorigin.me/https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=dc6zaTOxFJmzC";
+
+            // Creates AJAX call for the specific topic  
+            $.ajax({
+                url: queryURL,
+                method: 'GET'
+            }).done(function(response) {
+
+                $('.critterView').empty(); //clean out hopper between 
+
+                for (var i = 0; i < 11; i++) {
+
+                    // Creates a div to hold the new critter
+                    var critterDiv = $('<div class="critterDiv">');
+
+                    // Retrieves the Rating Data
+                    var rating = response.data[i].rating;
+                    // Creates an element to have the rating displayed
+                    var pOne = $('<p>').text("Rating: " + rating);
+                    // Displays the rating
+                    critterDiv.append(pOne);
+
+                    // Creates an element to hold the image 
+                    var image = $('<img class="startImg">').attr("src", response.data[i].images.fixed_height_still.url);
+                    image.attr("data-still", response.data[i].images.fixed_height_still.url);
+                    image.attr("data-animate", response.data[i].images.original.url);
+                    image.attr("data-convert", "still");
+
+                    // Appends the image
+                    critterDiv.append(image);
+
+                    // Puts the entire topic above the previous critters.
+                    $('.critterView').prepend(critterDiv);
+                }
+            });
+        }
+
+        // Function for displaying topic data 
+        function renderButtons() {
+            // Deletes the critters prior to adding new critters.
+            $('.buttons-view').empty();
+
+            // Loops through the array of critters
+            for (var i = 0; i < critters.length; i++) {
+
+                // Then dynamically generates buttons for each topic in the array
+                // Sets the variable to = the jQuery call for <button> to write the <button<button/> tags
+                var a = $('<button>');
+                a.addClass('critterBtn'); // Added a class 
+                a.attr('data-name', critters[i]); // Added a data-attribute
+                a.text(critters[i]); // Provided the initial button text
+                $('.buttons-view').append(a); // Added the button to the HTML
+            }
+        }
+
+        // This function handles events where one button is clicked
+        $('.addCritter').on('click', function() {
+
+            // This line of code will grab the input from the textbox
+            var topic = $('#critter-input').val().trim();
+            if (topic === "") {
+                console.log("not working");
+            } else {
+                // The topic from the textbox is then added to the array
+                critters.push(topic);
+                console.log(critters);
+                // The array then runs which handles the processing of the topic array
+                renderButtons();
+            
+            //Empty input field after new button is made
+            $('#critter-input').attr("value", "");
+-           $('#critter-input').val("");
+            }
+            // This line so that users can hit "enter" instead of clicking on the button and it won't move to the next page
+            return false;
+        });
+
+        // Generic function for displaying the topicInfo
+        $(document).on('click', '.critterBtn', displayTopicInfo);
+        $(document).on('click', '.startImg', function() {
+            var state = $(this).attr('data-convert');
+            if (state == 'still') {
+                $(this).attr('src', $(this).data('animate'));
+                $(this).attr('data-convert', 'animate');
+            } else {
+                $(this).attr('src', $(this).data('still'));
+                $(this).attr('data-convert', 'still');
+            }
+        });
+
+        // This calls the renderButtons() function
+        renderButtons();
+
+    });
+    </script>
+</body>
+
+</html>

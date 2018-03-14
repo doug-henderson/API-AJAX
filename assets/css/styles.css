@@ -1,0 +1,168 @@
+* {
+	margin: auto;
+	
+
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body{
+	margin: 0 0 100px 0;
+	font-family: -apple-system, BlinkMacSystemFont, 
+    "Segoe UI", "Roboto", "Oxygen", 
+    "Ubuntu", "Cantarell", "Fira Sans", 
+    "Droid Sans", "Helvetica Neue", sans-serif;
+	color: #3D372E;
+	line-height: 120%;
+	box-sizing: border-box;
+	background-color: rgb(213, 213, 213);
+}
+
+main { 
+	margin: auto;
+	width: 960px;
+	height: 100%;
+	overflow: hidden;
+}
+
+.critterBtn {
+	background-color: rgb(97, 109, 120);
+    border: 3px solid #cccccc;
+    color: white;
+    padding: 10px 10px;
+    text-decoration: none;
+    margin: 4px 4px;
+    cursor: pointer;
+    font-size: 1em;
+	min-width: 15%;
+	border-radius: 7px;
+	text-transform: uppercase;
+
+}
+
+form {
+	background-color: #efefef; 
+	padding: 10px 10px;
+    text-decoration: none;
+    width: 100%;
+}
+
+label {
+	color: gray;
+    padding: 10px 10px;
+    font-size: 1.25em;
+  	font-weight: bolder;
+}
+
+#critter-input {
+	padding: 5px 10px;
+    font-size: 1em;
+    min-width: 20%;
+    background-color: rgb(242, 242, 242); 
+}
+input.addCritter { 
+	color: white;
+    padding: 5px 20px;
+    font-size: 1.25em;
+  	font-weight: bolder;
+  	background-color: rgb(97, 109, 120);
+  	border-radius: 7px;
+}
+
+.container {
+	margin: auto;
+	padding: 40px;
+	}
+.critterDiv {
+	float: left;
+	margin: 5px;
+}
+
+footer {
+	clear: both;
+	text-align: center;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 40px;
+	width: 100%;
+	color: #fff;
+	position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+/* logo*/
+h1 {
+	font-family: 'EB Garamond', serif;
+	font-size: 3em;
+	font-weight: bolder;
+	text-align: center;
+	letter-spacing: .75px;
+	padding: 30px;
+	color: #618BB0;
+
+}
+/*heading*/
+h2 {
+	font-size: 1.75em;
+	font-weight: bolder;
+	line-height: 150%;
+	color: #7D715E;
+}
+/*side bar header*/
+h3 {
+	font-size: 1.25em;
+	font-weight: bold;
+	line-height: 75%;
+	color: #7D715E;
+}
+/*gallery labels, contact labels*/
+h4 {
+	font-size: 1.1em;
+	color: #BDAB8E;
+}
+
+h5 {
+	font-size: 1em;
+	font-style: italic;
+	color: #BDAB8E;
+	text-align: center;
+	margin-bottom: 25px;
+}
+/* footer*/
+h6 {
+	font-size: .75em;
+	letter-spacing: .75px;
+	padding: 30px 0px 30px 0px;
+	color: #FFF0D9;
+}
+
+p {
+	font-size: .85em;
+	color: #B09873;
+	text-transform: uppercase;
+	margin-top: 1em;
+}
+
+a {
+	text-decoration: none;
+	font-size: 1em;
+	font-style: italic;
+	color: inherit;
+}
+
+/*
+ # 3D372E dk brown
+background FCE4BE
+highlight light FFF0D9
+#E3CDAA
+#BDAB8E
+#B09873
+low Light #7D715E
+contrast 618BB0 dk blue
+contrast BEDFFC light blue
+*/
